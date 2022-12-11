@@ -1,0 +1,153 @@
+﻿#include <SFML/Graphics.hpp>
+#include "Header.h"
+using namespace sf;
+int main()
+{
+	// Îáúåêò, êîòîðûé, ñîáñòâåííî, ÿâëÿåòñÿ ãëàâíûì îêíîì ïðèëîæåíèÿ
+	RenderWindow window(VideoMode(w_width, w_height), w_title);
+	window.setFramerateLimit(60);
+	CircleShape circle;
+	circle.setRadius(r);
+	circle.setFillColor(Circle_Color);
+	circle.setPosition((w_width - 6 * r) / 2, (w_height - 2 * r) / 2);
+	// Ãëàâíûé öèêë ïðèëîæåíèÿ. Âûïîëíÿåòñÿ, ïîêà îòêðûòî îêíî
+	while (window.isOpen())
+	{
+		// Îáðàáàòûâàåì î÷åðåäü ñîáûòèé â öèêëå
+		Event event;
+		while (window.pollEvent(event))
+		{
+			// Ïîëüçîâàòåëü íàæàë íà «êðåñòèê» è õî÷åò çàêðûòü îêíî?
+			if (event.type == Event::Closed)
+				// òîãäà çàêðûâàåì åãî
+				window.close();
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Up)) { circle.move(0, -1); }
+		if (Keyboard::isKeyPressed(Keyboard::Down)) { circle.move(0, 1); }
+		if (Keyboard::isKeyPressed(Keyboard::Left)) { circle.move(-1, 0); }
+		if (Keyboard::isKeyPressed(Keyboard::Right)) { circle.move(1, 0); }
+		if (circle.getPosition().y <= 0) {
+			circle.setPosition(circle.getPosition().x, 0.f);
+		}
+		if (circle.getPosition().x <= 0) {
+			circle.setPosition(0.f, circle.getPosition().y);
+		}
+		if (circle.getPosition().y >= w_height - 2 * r) {
+			circle.setPosition(circle.getPosition().x, w_height - 2 * r);
+		}
+		if (circle.getPosition().x >= w_width - 2 * r) {
+			circle.setPosition(w_width - 2 * r, circle.getPosition().y);
+		}
+		if (circle.getPosition().x <= 27|| circle.getPosition().y <= 15) {
+			circle.setPosition((w_width - 6 * r) / 2, (w_height - 2 * r) / 2);
+		}
+		if (circle.getPosition().x >= 710 || circle.getPosition().y >= 560) {
+			circle.setPosition((w_width - 6 * r) / 2, (w_height - 2 * r) / 2);
+		}
+		VertexArray way(sf::TrianglesFan, 24);
+		way[0].position = Vector2f(229.5, 15);
+		way[1].position = Vector2f(540, 15);
+		way[2].position = Vector2f(720, 120);
+		way[3].position = Vector2f(720, 180);
+		way[4].position = Vector2f(648, 160);
+		way[5].position = Vector2f(720, 180);
+		way[6].position = Vector2f(720, 225);
+		way[7].position = Vector2f(720, 420);
+		way[8].position = Vector2f(690, 420);
+		way[9].position = Vector2f(690, 495);
+		way[10].position = Vector2f(621, 495);
+		way[11].position = Vector2f(486, 570);
+
+		way[12].position = Vector2f(229.5, 570);
+		way[13].position = Vector2f(110, 495);
+		way[14].position = Vector2f(55, 495);
+		way[15].position = Vector2f(55, 420);
+		way[16].position = Vector2f(27, 420);
+		way[17].position = Vector2f(27, 225);
+		way[18].position = Vector2f(27, 180);
+		way[19].position = Vector2f(100, 180);
+		way[20].position = Vector2f(27, 180);
+		way[21].position = Vector2f(27, 120);
+		way[22].position = Vector2f(229.5, 15);
+		way[23].position = Vector2f(540, 15);
+		for (int i = 0; i < 24; i++) {
+			way[i].color = Color::Magenta;
+		}
+		VertexArray way2(sf::TrianglesFan, 5);
+		way2[0].position = Vector2f(189, 95);
+		way2[1].position = Vector2f(256.5, 50);
+		way2[2].position = Vector2f(337.5, 50);
+		way2[3].position = Vector2f(337.5, 95);
+		way2[4].position = Vector2f(243, 150);
+		for (int i = 0; i < 5; i++) {
+			way2[i].color = Color::Black;
+		}
+		VertexArray way3(sf::TrianglesFan, 5);
+		way3[0].position = Vector2f(588, 95);
+		way3[1].position = Vector2f(520, 50);
+		way3[2].position = Vector2f(440, 50);
+		way3[3].position = Vector2f(440, 95);
+		way3[4].position = Vector2f(520, 150);
+		for (int i = 0; i < 5; i++) {
+			way3[i].color = Color::Black;
+		}
+		VertexArray way4(sf::TrianglesFan, 4);
+		way4[0].position = Vector2f(100, 200);
+		way4[1].position = Vector2f(181, 200);
+		way4[2].position = Vector2f(181, 390);
+		way4[3].position = Vector2f(100, 390);
+		for (int i = 0; i < 4; i++) {
+			way4[i].color = Color::Black;
+		}
+		VertexArray way5(sf::TrianglesFan, 4);
+		way5[0].position = Vector2f(567, 200);
+		way5[1].position = Vector2f(648, 200);
+		way5[2].position = Vector2f(648, 390);
+		way5[3].position = Vector2f(567, 390);
+		for (int i = 0; i < 4; i++) {
+			way5[i].color = Color::Black;
+		}
+		VertexArray way6(sf::TrianglesFan, 4);
+		way6[0].position = Vector2f(270, 500);
+		way6[1].position = Vector2f(216, 430);
+		way6[2].position = Vector2f(525, 430);
+		way6[3].position = Vector2f(470, 500);
+		for (int i = 0; i < 4; i++)
+		{
+			way6[i].color = Color::Black;
+		}
+		VertexArray way7(sf::TrianglesFan, 4);
+		way7[0].position = Vector2f(211, 200);
+		way7[1].position = Vector2f(537, 200);
+		way7[2].position = Vector2f(537, 230);
+		way7[3].position = Vector2f(211, 230);
+		for (int i = 0; i < 4; i++)
+		{
+			way7[i].color = Color::Black;
+		}
+		VertexArray way8(sf::TrianglesFan, 4);
+		way8[0].position = Vector2f(379, 0);
+		way8[1].position = Vector2f(399, 0);
+		way8[2].position = Vector2f(399, 95);
+		way8[3].position = Vector2f(379, 95);
+		for (int i = 0; i < 4; i++)
+		{
+			way8[i].color = Color::Black;
+		}
+		window.clear(Color::Black);
+		// Îòðèñîâêà îêíà 
+		window.draw(way);
+		window.draw(way2);
+		window.draw(way3);
+		window.draw(way4);
+		window.draw(way5);
+		window.draw(way6);
+		window.draw(way7);
+		window.draw(way8);
+		window.draw(circle);
+		window.display();
+
+	}
+
+	return 0;
+}
